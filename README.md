@@ -1,6 +1,6 @@
 # sgJS (steem/golosjs-lib)
 
-Pure JavaScript Steem/Golos crypto library for node.js and browsers. Can be used to construct, sign and broadcast transactions in JavaScript.
+Pure JavaScript Steem and Golos crypto library for node.js and browsers. Can be used to construct, sign and broadcast transactions in JavaScript.
 
 [![npm version](https://img.shields.io/npm/v/sgjs-lib.svg?style=flat-square)](https://www.npmjs.com/package/sgjs-lib)
 [![npm downloads](https://img.shields.io/npm/dm/sgjs-lib.svg?style=flat-square)](https://www.npmjs.com/package/sgjs-lib)
@@ -24,7 +24,8 @@ There's a quite extensive suite of tests that can be run using `npm run test`. T
 Three sub-libraries are included: `ECC`, `Chain` and `Serializer`. Generally only the `ECC` and `Chain` libraries need to be used directly.
 
 ### API setup
-When constructing a Steem transaction and also when verifying the password/private key of an account, some data from the blockchain is required. Because of this, `sgjs-lib` includes a dependency on [steem-rpc](https://github.com/svk31/steem-rpc), which is a websocket API library for connecting to Steem API servers. Before attempting to broadcast a transaction you will need to initialise this library. By default it will connect to a public API server provided by [xeroc and jesta](https://steemit.com/steemws/@jesta/steem-ws-the-public-steem-api-cluster), but you can change this in the options if you prefer to use your own server.
+
+When constructing a transaction and also when verifying the password/private key of an account, some data from the blockchain is required. Because of this, `sgjs-lib` includes a dependency on [steem-rpc](https://github.com/svk31/steem-rpc), which is a websocket API library for connecting to Steem/Golos API servers. Before attempting to broadcast a transaction you will need to initialise this library. By default it will connect to a Steem public API server provided by [xeroc and jesta](https://steemit.com/steemws/@jesta/steem-ws-the-public-steem-api-cluster), but you can change this in the options if you prefer to use your own server.
 
 To initialise the API library, use the following code:
 
@@ -41,19 +42,36 @@ In a browser the syntax is slightly different:
 
 ```
 var options = {};
-var Client = window.steemJS.steemRPC.Client;
+var Client = window.sgJS.steemRPC.Client;
 var Api = Client.get(options, true);
 Api.initPromise.then(response => {
     console.log("Api ready:", response);
 })
 ```
 
+# Multi-chain
+
+In order to change chain from Steem<->Golos, you should first close open socket and change socket on RPC.
+
+
+```
+window.Api.close();
+window.Api = window.steemRPC.Client.get({url:"wss://example.com"}, true); //RPC
+
+window.sgJS.ChainConfig.setChainId("0000000000000000000000000000000000000000000000000000000000000000"); //steem
+window.sgJS.ChainConfig.setChainId("782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12"); //golos
+
+```
+
+
 More details on the possible options can be found in the README of `steem-rpc`.
 
 Once the init promise has been resolved, the API connection is ready and you can start using the transaction builder.
 
 ### Chain
+
 The Chain library contains utility functions related to the chain state, as well as a transaction builder and a login class.
+
 
 #### Transaction builder
 The transaction builder can be used to construct any transaction, sign it, and broadcast it. To broadcast a transaction you need to be connected to a `steemd` node with the `network_broadcast_api` enabled.
