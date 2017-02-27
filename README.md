@@ -1,15 +1,15 @@
-# sgJS (steem/golosjs-lib)
+# esteem (steem/golosjs-lib)
 
 Pure JavaScript Steem and Golos crypto library for node.js and browsers. Can be used to construct, sign and broadcast transactions in JavaScript.
 
-[![npm version](https://img.shields.io/npm/v/sgjs-lib.svg?style=flat-square)](https://www.npmjs.com/package/sgjs-lib)
-[![npm downloads](https://img.shields.io/npm/dm/sgjs-lib.svg?style=flat-square)](https://www.npmjs.com/package/sgjs-lib)
+[![npm version](https://img.shields.io/npm/v/esteem-lib.svg?style=flat-square)](https://www.npmjs.com/package/esteem-lib)
+[![npm downloads](https://img.shields.io/npm/dm/esteem-lib.svg?style=flat-square)](https://www.npmjs.com/package/esteem-lib)
 
 ## Setup
 
 This library can be obtained through npm:
 ```
-npm install sgjs-lib
+npm install esteem-lib
 ```
 
 DISCLAIMER: This is a work in progress and most likely there will be bugs. Please file issues if you encounter any problems.
@@ -25,7 +25,7 @@ Three sub-libraries are included: `ECC`, `Chain` and `Serializer`. Generally onl
 
 ### API setup
 
-When constructing a transaction and also when verifying the password/private key of an account, some data from the blockchain is required. Because of this, `sgjs-lib` includes a dependency on [steem-rpc](https://github.com/svk31/steem-rpc), which is a websocket API library for connecting to Steem/Golos API servers. Before attempting to broadcast a transaction you will need to initialise this library. By default it will connect to a Steem public API server provided by [xeroc and jesta](https://steemit.com/steemws/@jesta/steem-ws-the-public-steem-api-cluster), but you can change this in the options if you prefer to use your own server.
+When constructing a transaction and also when verifying the password/private key of an account, some data from the blockchain is required. Because of this, `esteem-lib` includes a dependency on [steem-rpc](https://github.com/svk31/steem-rpc), which is a websocket API library for connecting to Steem/Golos API servers. Before attempting to broadcast a transaction you will need to initialise this library. By default it will connect to a Steem public API server provided by [xeroc and jesta](https://steemit.com/steemws/@jesta/steem-ws-the-public-steem-api-cluster), but you can change this in the options if you prefer to use your own server.
 
 To initialise the API library, use the following code:
 
@@ -42,7 +42,7 @@ In a browser the syntax is slightly different:
 
 ```
 var options = {};
-var Client = window.sgJS.steemRPC.Client;
+var Client = window.esteem.steemRPC.Client;
 var Api = Client.get(options, true);
 Api.initPromise.then(response => {
     console.log("Api ready:", response);
@@ -58,8 +58,8 @@ In order to change chain from Steem<->Golos, you should first close open socket 
 window.Api.close();
 window.Api = window.steemRPC.Client.get({url:"wss://example.com"}, true); //RPC
 
-window.sgJS.ChainConfig.setChainId("0000000000000000000000000000000000000000000000000000000000000000"); //steem
-window.sgJS.ChainConfig.setChainId("782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12"); //golos
+window.esteem.ChainConfig.setChainId("0000000000000000000000000000000000000000000000000000000000000000"); //steem
+window.esteem.ChainConfig.setChainId("782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12"); //golos
 
 ```
 
@@ -80,7 +80,7 @@ For an example of how to create transaction, see below:
 
 ```
 // First generate the private key using the Login class
-var { TransactionBuilder, Login } = require("sgjs-lib");
+var { TransactionBuilder, Login } = require("esteem-lib");
 var login = new Login();
 login.setRoles(["posting"]);
 var loginSuccess = login.checkKeys({
@@ -109,7 +109,7 @@ tr.process_transaction(login, null, false);
 The third argument of `process_transaction` is `broadcast`. Setting it to false will simply construct the transaction and serialize it, without broadcasting it. If you want it to broadcast immediately, set it to `true`.
 
 #### Operation types
-For a list of possible operation types with their required and optional inputs, see this file: [operations.js](https://github.com/svk31/sgjs-lib/blob/master/lib/serializer/src/operations.js).
+For a list of possible operation types with their required and optional inputs, see this file: [operations.js](https://github.com/svk31/esteem-lib/blob/master/lib/serializer/src/operations.js).
 
 #### Login
 The Chain library includes the Login class that can be used to "log in" using an account name and a corresponding password or private key. Logging in here simply means verifying that the private key or password provided can be used to generate the private key for that account. The verification checks the public keys of the given account.
@@ -153,7 +153,7 @@ The ECC library contains all the crypto functions for private and public keys as
 As a quick example, here's how to generate a new private key from a seed (a brainkey for example):
 
 ```
-var {PrivateKey, key} = require("sgjs-lib");
+var {PrivateKey, key} = require("esteem-lib");
 
 let seed = "THIS IS A TERRIBLE BRAINKEY SEED WORD SEQUENCE";
 let pkey = PrivateKey.fromSeed( key.normalize_brainKey(seed) );

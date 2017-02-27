@@ -1,5 +1,5 @@
 {
-  "name": "sgjs-lib",
+  "name": "esteem-lib",
   "version": "0.4.0",
   "description": "Pure JavaScript Steem/Golos library for node.js and browsers.",
   "browser": {
@@ -19,12 +19,12 @@
     "doc": "esdoc -c esdoc.json",
     "example-sig": "nodemon ./examples/signature.js",
     "prebrowserify": "rm -rf ./build/* && npm run build",
-    "postbrowserify": "uglifyjs --compress --mangle --sequences --drop_console --output build/sgjs-lib.min.js -- build/sgjs-lib.js",
-    "browserify": "browserify dist/browser.js --standalone sgJS -o build/sgjs-lib.js -d"
+    "postbrowserify": "uglifyjs --compress --mangle --sequences --drop_console --output build/esteem-lib.min.js -- build/esteem-lib.js",
+    "browserify": "browserify dist/browser.js --standalone esteem -o build/esteem-lib.js -d"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/esteemapp/sgjs-lib.git"
+    "url": "git+https://github.com/esteemapp/esteem-lib.git"
   },
   "author": "Feruz <feruz@mbox.se> (https://github.com/feruzm)",
   "contributors": [
@@ -34,7 +34,7 @@
   ],
   "license": "BSD-2-Clause-FreeBSD",
   "bugs": {
-    "url": "https://github.com/esteemapp/sgjs-lib/issues"
+    "url": "https://github.com/esteemapp/esteem-lib/issues"
   },
   "engines": {
     "node": ">= 6.0.0"
