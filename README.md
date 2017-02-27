@@ -1,6 +1,6 @@
-# esteem (steem/golosjs-lib)
+# esteem-lib
 
-Pure JavaScript Steem and Golos crypto library for node.js and browsers. Can be used to construct, sign and broadcast transactions in JavaScript.
+Library used by eSteem to construct, sign and broadcast transactions in Javascript to Steem and Golos chains. Can be used by browser Javascript and Node.js server side.
 
 [![npm version](https://img.shields.io/npm/v/esteem-lib.svg?style=flat-square)](https://www.npmjs.com/package/esteem-lib)
 [![npm downloads](https://img.shields.io/npm/dm/esteem-lib.svg?style=flat-square)](https://www.npmjs.com/package/esteem-lib)
@@ -11,13 +11,6 @@ This library can be obtained through npm:
 ```
 npm install esteem-lib
 ```
-
-DISCLAIMER: This is a work in progress and most likely there will be bugs. Please file issues if you encounter any problems.
-
-The source code uses ES6 syntax but the npm library is transpiled to regular ES5 and can be used without Babel.
-
-## Tests
-There's a quite extensive suite of tests that can be run using `npm run test`. These tests cover many different use cases and can be used as a reference point.
 
 ## Usage
 
@@ -67,6 +60,15 @@ window.esteem.ChainConfig.setChainId("782a3039b478c839e4cb0c941ff4eaeb7df40bdd68
 More details on the possible options can be found in the README of `steem-rpc`.
 
 Once the init promise has been resolved, the API connection is ready and you can start using the transaction builder.
+
+
+DISCLAIMER: This is a work in progress and most likely there will be bugs. Please file issues if you encounter any problems.
+
+The source code uses ES6 syntax but the npm library is transpiled to regular ES5 and can be used without Babel.
+
+## Tests
+There's a quite extensive suite of tests that can be run using `npm run test`. These tests cover many different use cases and can be used as a reference point.
+
 
 ### Chain
 
