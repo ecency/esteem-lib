@@ -1,7 +1,7 @@
 {
   "name": "esteem-lib",
-  "version": "0.4.0",
-  "description": "Pure JavaScript Steem/Golos library for node.js and browsers.",
+  "version": "0.4.1",
+  "description": "Pure JavaScript eSteem library for node.js and browsers.",
   "browser": {
     "ws": false,
     "crypto": false
@@ -20,7 +20,8 @@
     "example-sig": "nodemon ./examples/signature.js",
     "prebrowserify": "rm -rf ./build/* && npm run build",
     "postbrowserify": "uglifyjs --compress --mangle --sequences --drop_console --output build/esteem-lib.min.js -- build/esteem-lib.js",
-    "browserify": "browserify dist/browser.js --standalone esteem -o build/esteem-lib.js -d"
+    "browserify": "browserify dist/browser.js --standalone esteem -o build/esteem-lib.js -d",
+    "all": "npm run clean && rm -rf ./build/* && npm run build && browserify dist/browser.js --standalone esteem -o build/esteem-lib.js -d && npm publish"
   },
   "repository": {
     "type": "git",
