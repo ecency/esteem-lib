@@ -16,6 +16,20 @@ npm install esteem-lib
 
 Three sub-libraries are included: `ECC`, `Chain` and `Serializer`. Generally only the `ECC` and `Chain` libraries need to be used directly.
 
+# Multi-chain
+
+In order to change chain from Steem<->Golos, you should first close open socket and change socket on RPC.
+
+
+```
+window.Api.close();
+window.Api = window.steemRPC.Client.get({url:"wss://example.com"}, true); //RPC
+
+window.esteem.ChainConfig.setChainId("0000000000000000000000000000000000000000000000000000000000000000"); //steem
+window.esteem.ChainConfig.setChainId("782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12"); //golos
+
+```
+
 ### API setup
 
 When constructing a transaction and also when verifying the password/private key of an account, some data from the blockchain is required. Because of this, `esteem-lib` includes a dependency on [steem-rpc](https://github.com/svk31/steem-rpc), which is a websocket API library for connecting to Steem/Golos API servers. Before attempting to broadcast a transaction you will need to initialise this library. By default it will connect to a Steem public API server provided by [xeroc and jesta](https://steemit.com/steemws/@jesta/steem-ws-the-public-steem-api-cluster), but you can change this in the options if you prefer to use your own server.
@@ -40,20 +54,6 @@ var Api = Client.get(options, true);
 Api.initPromise.then(response => {
     console.log("Api ready:", response);
 })
-```
-
-# Multi-chain
-
-In order to change chain from Steem<->Golos, you should first close open socket and change socket on RPC.
-
-
-```
-window.Api.close();
-window.Api = window.steemRPC.Client.get({url:"wss://example.com"}, true); //RPC
-
-window.esteem.ChainConfig.setChainId("0000000000000000000000000000000000000000000000000000000000000000"); //steem
-window.esteem.ChainConfig.setChainId("782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12"); //golos
-
 ```
 
 
