@@ -1,3 +1,6 @@
+## v0.4.6
+comment rewards, delegated account creations and other hf17/18 related APIs
+
 ## v0.4.5
 operations id and validation update
 

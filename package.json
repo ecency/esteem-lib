@@ -1,6 +1,6 @@
 {
   "name": "esteem-lib",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "Pure JavaScript eSteem library for node.js and browsers.",
   "browser": {
     "ws": false,
@@ -29,6 +29,8 @@
   },
   "author": "Feruz <feruz@mbox.se> (https://github.com/feruzm)",
   "contributors": [
+    "Fabien <fabien@adcpm.com> (https://github.com/adcpm/)",
+    "Tim Fesenko <tim@steemit.com> (https://github.com/roadscape/)",
     "James Calfee <james@jcalfee.info> (https://github.com/jcalfee/)",
     "Sigve Kvalsvik <bitsharesblocks@gmail.com> (https://github.com/svk31)",
     "Someguy123 <info@someguy123.com> (https://github.com/Someguy123)"
