@@ -1,3 +1,6 @@
+## v0.4.7
+beneficiaries addition fix
+
 ## v0.4.6
 comment rewards, delegated account creations and other hf17/18 related APIs
 
